@@ -17,10 +17,12 @@ fs.readFile(filePath, (err, data) => {
       sum = 0;
     }
   }
-  console.log(arraySum);
   const result = arraySum.reduce((prev, curr, index) =>
     prev > curr ? prev : curr
   );
+  //PART 1
+  console.log(result);
+  //PArt 2
   const sorted = arraySum.sort((a, b) => b - a);
   console.log(arraySum[0] + arraySum[1] + arraySum[2]);
 });
