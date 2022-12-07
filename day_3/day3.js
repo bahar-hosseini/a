@@ -14,6 +14,7 @@ fs.readFile(pathFile, (err, data) => {
   if (err) throw err;
   const array = data.toString().split('\n');
   let result = [];
+  let result2 = [];
   let sum = 0;
   array.forEach((element) => {
     const firstHalf = element.slice(0, element.length / 2);
@@ -31,5 +32,29 @@ fs.readFile(pathFile, (err, data) => {
       ? (sum += i.charCodeAt(0) - 64 - 32)
       : (sum += i.charCodeAt(0) - 64 + 26)
   );
-  console.log(sum);
+  //Part 2
+  for (let i = 0; i < array.length; i += 3) {
+    result2.push([array[i], array[i + 1], array[i + 2]]);
+  }
+  console.log(result2.length);
+  let finalResult = [];
+  for (let i = 0; i < result2.length; i++) {
+    for (let j = 0; j < result2[i][1].length; j++) {
+      if (
+        result2[i][0].includes(result2[i][1][j]) &&
+        result2[i][2].includes(result2[i][1][j])
+      ) {
+        finalResult.push(result2[i][1][j]);
+        break;
+      }
+    }
+  }
+  let sumPart2 = 0;
+  console.log(finalResult.length);
+  finalResult.forEach((i, index) =>
+    i.charCodeAt(0) - 64 > 26
+      ? (sumPart2 += i.charCodeAt(0) - 64 - 32)
+      : (sumPart2 += i.charCodeAt(0) - 64 + 26)
+  );
+  console.log(sumPart2);
 });
