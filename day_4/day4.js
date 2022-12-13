@@ -4,7 +4,8 @@ const pathFile = path.join(__dirname, 'input.txt');
 
 fs.readFile(pathFile, (err, data) => {
   if (err) throw err;
-  let answer = 0;
+  let answerPart1 = 0;
+  let answerPart2 = 0;
   const array = data.toString().split('\n');
 
   for (let item of array) {
@@ -13,8 +14,16 @@ fs.readFile(pathFile, (err, data) => {
       (Number(i[0]) <= Number(i[2]) && Number(i[1]) >= Number(i[3])) ||
       (Number(i[2]) <= Number(i[0]) && Number(i[3]) >= Number(i[1]))
     ) {
-      answer += 1;
+      answerPart1 += 1;
+    }
+    if (
+      (Number(i[0]) <= Number(i[2]) && Number(i[1]) >= Number(i[3])) ||
+      (Number(i[2]) <= Number(i[0]) && Number(i[3]) >= Number(i[1])) ||
+      (Number(i[0]) <= Number(i[3]) && Number(i[1]) >= Number(i[2]))
+    ) {
+      answerPart2 += 1;
     }
   }
-  console.log(answer);
+  console.log(answerPart1);
+  console.log(answerPart2);
 });
